@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: fashion-ai-app
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.0
+      - key: SECRET_KEY
+        generateValue: true
+      - key: FLASK_DEBUG
+        value: "False"
+      - key: STYLE_MODEL_PATH
+        value: "models/style_model.h5"
+      - key: VIRTUAL_TRYON_MODEL_PATH
+        value: "models/virtual_tryon.h5" 
