@@ -53,4 +53,9 @@ if (-not $renderRemote) {
 }
 
 Write-Host "`nDeployment setup completed!" -ForegroundColor Green
-Write-Host "Your app will be available at: https://fashion-ai-app.onrender.com" -ForegroundColor Green 
+Write-Host "Your app will be available at: https://fashion-ai-app.onrender.com" -ForegroundColor Green
+
+# Push to GitHub
+Write-Host "`nPushing to GitHub..." -ForegroundColor Yellow
+git remote add origin https://github.com/YOUR_USERNAME/fashion-ai-app.git
+git push -u origin master 

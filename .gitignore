@@ -37,3 +37,10 @@ yarn-error.log*
 # System
 .DS_Store
 Thumbs.db
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Local development
+*.sqlite3
+*.db

@@ -1,9 +1,9 @@
 services:
   - type: web
-    name: fashion-ai-app
+    name: adaah
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
+    startCommand: gunicorn app:app --workers 2 --threads 4 --timeout 180 --max-requests 1000 --max-requests-jitter 50 --log-level info
     envVars:
       - key: PYTHON_VERSION
         value: 3.9.0
@@ -11,7 +11,14 @@ services:
         generateValue: true
       - key: FLASK_DEBUG
         value: "False"
+      - key: FLASK_ENV
+        value: "production"
       - key: STYLE_MODEL_PATH
         value: "models/style_model.h5"
       - key: VIRTUAL_TRYON_MODEL_PATH
-        value: "models/virtual_tryon.h5" 
+        value: "models/virtual_tryon.h5"
+      - key: PORT
+        value: "10000"
+    healthCheckPath: /api/recommend-outfit
+    autoDeploy: true
+    plan: free 
