@@ -1,0 +1,380 @@
+/* 🌈 Global Reset & Font */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+/* 🍃 Background Gradient */
+.whole {
+  background: linear-gradient(135deg, #d5f2ef, #fce1ff);
+}
+
+/* 🍥 Top Navigation Buttons */
+.top-nav {
+  padding: 1%;
+  background-color: transparent;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  width: 100%;
+}
+
+.top-nav > button {
+  background-color: #ffdde1;
+  color: #a20032;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.top-nav > button:hover {
+  background-color: #ffc9d4;
+  transform: translateY(-2px);
+}
+
+/* 💖 Main Container */
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+.right-panel {
+  width: 100%;
+  max-width: 1200px;
+  background-color: #fff2f9;
+  border-radius: 20px;
+  padding: 40px 25px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* 🎀 Welcome Section */
+.welcome-section {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.welcome-title {
+  font-size: 2.8rem;
+  color: #4d0101;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-shadow: 1px 1px #ffeaea;
+}
+
+.wave-emoji {
+  font-size: 1.8rem;
+  color: #f5a623;
+}
+
+/* 📁 File Upload */
+.file-upload-container {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.file-upload-label {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background-color: white;
+  border: 1px solid #ffd3da;
+  border-radius: 14px;
+  text-align: left;
+  color: #666;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease-in-out;
+}
+
+.file-upload-label:hover {
+  background-color: #fff4f4;
+  border-color: #fcb6c2;
+}
+
+.file-upload-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* 🎯 Dropdown Styling */
+.filters-container {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.dropdown {
+  position: relative;
+  flex: 1;
+}
+
+.dropdown-left,
+.dropdown-right {
+  width: 50%;
+}
+
+.dropdown-button {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: white;
+  border: 1px solid #ffd3da;
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease-in-out;
+}
+
+.dropdown-button:hover {
+  background-color: #fff4f4;
+  border-color: #fcb6c2;
+}
+
+.dropdown-arrow {
+  font-size: 0.7rem;
+  color: #666;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  margin-top: 5px;
+  z-index: 10;
+  padding: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-menu p {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.dropdown-menu p:hover {
+  background-color: #f5f5f5;
+}
+
+/* 🚨 Error */
+.error-message {
+  color: #e53935;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
+/* ✨ "Get My Look" Button – Purple Themed */
+.get-look-button {
+  width: 100%;
+  padding: 15px;
+  background-color: #d1c4f9;
+  border: none;
+  border-radius: 14px;
+  color: #4d0154;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.get-look-button:hover {
+  background-color: #bba3f7;
+  transform: translateY(-2px);
+}
+
+.get-look-button:disabled {
+  background-color: #e0d7fa;
+  cursor: not-allowed;
+}
+
+.sparkle {
+  margin-right: 5px;
+}
+
+/* 🔥 Trending Section */
+.trending-section {
+  margin-top: 20px;
+}
+
+.trending-title {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.trending-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.fit-card {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.fit-card:hover {
+  transform: translateY(-5px);
+}
+
+.trending-item {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.fit-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.trending-caption {
+  padding: 12px;
+  background-color: white;
+}
+
+.fit-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fit-info h3 {
+  font-size: 1rem;
+  color: #333;
+  margin: 0;
+}
+
+.fit-info p {
+  font-size: 1rem;
+  color: #4d0154;
+  font-weight: 600;
+  margin: 0;
+}
+
+.color-schemes {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  height: 48px;
+  min-height: 48px;
+  max-height: 48px;
+}
+
+.color-box,
+.suggestion-card .color-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #ffd3da;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  margin: 0 2px;
+}
+
+.color-analysis-page {
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #d5f2ef, #fce1ff);
+  padding: 0;
+  width: 100vw;
+}
+
+.main-content {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0.5rem 0.5rem 0 0.5rem;
+  height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.header-section {
+  padding: 0.5rem;
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+}
+
+.color-analysis-row {
+  gap: 0.2rem;
+  padding: 0.2rem;
+  border-radius: 12px;
+}
+
+.dominant-color-section h2,
+.color-schemes-section h2 {
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+
+.suggestion-card {
+  padding: 0.3rem;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  min-width: 60px;
+  max-width: 90px;
+}
+
+.suggestions-grid {
+  gap: 0.15rem;
+}
+
+.outfit-suggestions {
+  padding: 0.5rem;
+  border-radius: 10px;
+  margin: 0.5rem 0;
+  max-height: 30vh;
+  overflow-y: auto;
+}
+
+.color-scheme {
+  background-color: #fff9fb;
+  padding: 0.5rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.07);
+  transition: transform 0.2s ease;
+  min-width: 70px;
+  max-width: 90px;
+  font-size: 0.8rem;
+  margin: 0 4px;
+  text-align: center;
+}

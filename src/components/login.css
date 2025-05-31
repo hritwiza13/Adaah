@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom right, #ffeaf4, #e0f7fa);
+  font-family: 'Quicksand', sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Wrapper */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    padding: 0 1rem;
+    animation: floatIn 1.2s ease-in-out;
+    position: relative;
+  }
+  
+/* Floating Sparkles and Hearts */
+.login-wrapper::before,
+.login-wrapper::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffd6f6 0%, #fff 90%);
+  opacity: 0.6;
+  width: 10px;
+  height: 10px;
+  animation: sparkleAnim 6s infinite ease-in-out;
+  z-index: 0;
+}
+
+.login-wrapper::after {
+  top: 20%;
+  left: 80%;
+  animation-delay: 2s;
+}
+
+.login-wrapper::before {
+  content: '💖';
+  font-size: 1.5rem;
+  color: #ff80bf;
+  width: auto;
+  height: auto;
+  animation: floatHeart 8s infinite ease-in-out;
+  top: 40%;
+  left: 50%;
+}
+
+/* Form Box */
+.login-form {
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+  padding: 3rem 2rem;
+  background-color: #fff8fc;
+  border-radius: 30px;
+  box-shadow: 0 18px 45px rgba(255, 153, 204, 0.3);
+  border: 2px dashed #ffcce6;
+  position: relative;
+  z-index: 1;
+  animation: popIn 0.8s ease;
+}
+
+/* Title */
+.login-title {
+  font-size: 2.75rem;
+  font-weight: 700;
+  color: #d63384;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+}
+
+/* Labels */
+.login-form label {
+  display: block;
+  font-size: 1rem;
+  color: #b04179;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  text-align: left;
+}
+
+/* Inputs */
+.login-form input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 1.8px solid #ffcce6;
+  border-radius: 14px;
+  margin-bottom: 1.5rem;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  background-color: #fff0f6;
+}
+
+.login-form input:focus {
+  border-color: #ff66a6;
+  outline: none;
+  box-shadow: 0 0 10px #ffb3d9;
+}
+
+/* Button */
+.login-form button {
+  padding: 14px 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #ff80bf, #ffa6c9);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(255, 133, 186, 0.4);
+  animation: bounce 2s infinite;
+}
+
+.login-form button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #ffa6c9, #ff80bf);
+}
+
+/* Animations */
+@keyframes popIn {
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes floatIn {
+  0% { transform: translateY(30px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes sparkleAnim {
+  0% { transform: translateY(0) scale(1); opacity: 0.8; }
+  50% { transform: translateY(-50px) scale(1.3); opacity: 0.3; }
+  100% { transform: translateY(0) scale(1); opacity: 0.8; }
+}
+
+@keyframes floatHeart {
+  0% { transform: translateY(0) rotate(0); opacity: 0.6; }
+  50% { transform: translateY(-70px) rotate(20deg); opacity: 0.2; }
+  100% { transform: translateY(0) rotate(-10deg); opacity: 0.6; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
