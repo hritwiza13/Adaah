@@ -11,13 +11,14 @@ from io import BytesIO
 class FashionRecommender:
     def __init__(self):
         print("FashionRecommender: __init__ started") # Debug print
-        self.fashion_data = self.load_fashion_data()
-        self.categories = ['tops', 'bottoms']
         
         print("FashionRecommender: Initializing scraper...") # Debug print
         # Initialize the FashionScraper
         self.scraper = FashionScraper()
         print("FashionRecommender: Scraper initialized.") # Debug print
+
+        self.fashion_data = self.load_fashion_data()
+        self.categories = ['tops', 'bottoms']
 
     def load_fashion_data(self):
         """Load fashion data from JSON file"""
