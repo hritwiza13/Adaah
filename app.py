@@ -27,17 +27,22 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max upload
 # Initialize the fashion recommender
 recommender = FashionRecommender()
 
+# Ensure upload folder exists
+if not os.path.exists(app.config['UPLOAD_FOLDER']):
+    os.makedirs(app.config['UPLOAD_FOLDER'])
+
 @app.route('/')
 def index():
     return render_template('index.html')
 
 @app.route('/upload', methods=['POST'])
-def upload_file():
+def upload_image():
     if 'file' not in request.files:
-        return jsonify({'error': 'No file part'}), 400
+        return jsonify({'error': 'No file part in the request'}), 400
     
     file = request.files['file']
-    category = request.form.get('category', 'tops')
+    category = request.form.get('category')
+    gender = request.form.get('gender') # Get gender from form data
     
     if file.filename == '':
         return jsonify({'error': 'No selected file'}), 400
@@ -50,12 +55,16 @@ def upload_file():
         
         try:
             # Get recommendations
-            recommendations = recommender.get_recommendations(filepath, category)
+            # Pass the gender to the recommender
+            recommendations_data = recommender.get_recommendations(filepath, category, gender=gender)
             
             # Clean up the uploaded file
             os.remove(filepath)
             
-            return jsonify(recommendations)
+            if 'error' in recommendations_data:
+                return jsonify(recommendations_data), 400
+
+            return jsonify(recommendations_data), 200
             
         except Exception as e:
             # Clean up the uploaded file in case of error
