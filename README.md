@@ -1,90 +1,84 @@
-# Fashion AI Backend
+# Fashion Recommendation System
 
-A Flask-based backend for a fashion application featuring personalized outfit recommendations, style analysis, virtual try-on technology, and seasonal wardrobe planning.
+A web-based fashion recommendation system that suggests matching clothing items based on uploaded images. The system scrapes real-time fashion data from multiple sources (ASOS, H&M, and Zara) to provide up-to-date recommendations.
 
 ## Features
 
-- **Personalized Outfit Recommendations**: Get outfit suggestions based on user preferences and weather conditions
-- **Style Analysis & Trend Detection**: Analyze clothing images to detect styles and current trends
-- **Virtual Try-on Technology**: Try clothes virtually using AI-powered image processing
-- **Seasonal Wardrobe Planning**: Get seasonal wardrobe recommendations and planning assistance
+- Image upload for tops and bottoms
+- Real-time fashion data scraping from multiple sources
+- Price and brand information
+- Responsive web interface
+- Automatic image validation
+- Multi-source recommendations
 
-## Technologies Used
+## Installation
 
-- Python 3.8+
-- Flask
-- TensorFlow
-- OpenCV
-- NumPy
-- Pillow
-- scikit-learn
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd fashion-recommender
+```
 
-## Setup Instructions
-
-1. Create a virtual environment:
+2. Create and activate a virtual environment:
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-2. Install dependencies:
+3. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Create a `.env` file in the root directory with the following variables:
-```
-SECRET_KEY=your-secret-key-here
-FLASK_DEBUG=True
-STYLE_MODEL_PATH=models/style_model.h5
-VIRTUAL_TRYON_MODEL_PATH=models/virtual_tryon.h5
-UPLOAD_FOLDER=uploads
-RESULT_FOLDER=static/tryon_results
-```
+## Usage
 
-4. Run the application:
+1. Start the Flask application:
 ```bash
 python app.py
 ```
 
-The server will start on `http://localhost:5000`
+2. Open your browser and navigate to:
+```
+http://localhost:10000
+```
 
-## API Endpoints
-
-### Outfit Recommendations
-- **POST** `/api/recommend-outfit`
-  - Request body: `{ "preferences": {}, "weather": {} }`
-  - Returns personalized outfit recommendations
-
-### Style Analysis
-- **POST** `/api/analyze-style`
-  - Request: Form data with image file
-  - Returns style analysis and trend detection results
-
-### Virtual Try-on
-- **POST** `/api/virtual-tryon`
-  - Request: Form data with user image and clothing image
-  - Returns virtual try-on result
-
-### Seasonal Wardrobe
-- **POST** `/api/seasonal-wardrobe`
-  - Request body: `{ "season": "summer", "user_id": "123" }`
-  - Returns seasonal wardrobe recommendations
+3. Upload an image:
+   - Select category (tops or bottoms)
+   - Choose an image file
+   - Click "Get Recommendations"
 
 ## Project Structure
 
 ```
-.
-├── app.py              # Main Flask application
-├── config.py           # Configuration settings
-├── requirements.txt    # Project dependencies
-├── utils/
-│   └── ml_utils.py     # Machine learning utilities
-├── models/            # ML model files
-├── uploads/           # Uploaded images
-└── static/
-    └── tryon_results/ # Virtual try-on results
+fashion-recommender/
+├── app.py                 # Flask application
+├── config.py             # Configuration settings
+├── fashion_scraper.py    # Multi-source web scraper
+├── fashion_recommender.py # Recommendation engine
+├── requirements.txt      # Project dependencies
+├── static/              # Static files
+│   └── images/         # Downloaded images
+├── templates/          # HTML templates
+│   └── index.html     # Main interface
+└── data/              # Scraped data
 ```
+
+## Dependencies
+
+- Flask
+- BeautifulSoup4
+- Requests
+- Pillow
+- Python-dotenv
+
+## Configuration
+
+The system can be configured through `config.py`:
+
+- Scraping settings (timeouts, delays)
+- File paths
+- API endpoints
+- Environment variables
 
 ## Contributing
 

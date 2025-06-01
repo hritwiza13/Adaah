@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import tensorflow as tf
 import cv2
@@ -8,9 +8,13 @@ import io
 import json
 from datetime import datetime
 import os
+from werkzeug.utils import secure_filename
+from fashion_recommender import FashionRecommender
+from config import Config
 
 app = Flask(__name__)
 CORS(app)
+app.config.from_object(Config)
 
 # Configure for production
 app.config['JSON_SORT_KEYS'] = False
@@ -19,6 +23,49 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max upload
 # Load pre-trained models (to be implemented)
 # style_model = tf.keras.models.load_model('models/style_model.h5')
 # virtual_tryon_model = tf.keras.models.load_model('models/virtual_tryon.h5')
+
+# Initialize the fashion recommender
+recommender = FashionRecommender()
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file part'}), 400
+    
+    file = request.files['file']
+    category = request.form.get('category', 'tops')
+    
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+    
+    if file:
+        # Secure the filename and save the file
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(filepath)
+        
+        try:
+            # Get recommendations
+            recommendations = recommender.get_recommendations(filepath, category)
+            
+            # Clean up the uploaded file
+            os.remove(filepath)
+            
+            return jsonify(recommendations)
+            
+        except Exception as e:
+            # Clean up the uploaded file in case of error
+            if os.path.exists(filepath):
+                os.remove(filepath)
+            return jsonify({'error': str(e)}), 500
+
+@app.route('/api/health')
+def health_check():
+    return jsonify({'status': 'healthy'})
 
 @app.route('/api/recommend-outfit', methods=['POST'])
 def recommend_outfit():
@@ -117,5 +164,7 @@ def seasonal_wardrobe():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
+    # Create upload folder if it doesn't exist
+    os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False) 
