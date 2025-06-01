@@ -10,18 +10,23 @@ from io import BytesIO
 
 class FashionRecommender:
     def __init__(self):
+        print("FashionRecommender: __init__ started") # Debug print
         self.fashion_data = self.load_fashion_data()
         self.categories = ['tops', 'bottoms']
+        
+        print("FashionRecommender: Initializing scraper...") # Debug print
         # Initialize the FashionScraper
         self.scraper = FashionScraper()
+        print("FashionRecommender: Scraper initialized.") # Debug print
 
     def load_fashion_data(self):
         """Load fashion data from JSON file"""
+        print("FashionRecommender: load_fashion_data started") # Debug print
         try:
             with open(FILE_PATHS['fashion_data'], 'r', encoding='utf-8') as f:
                 return json.load(f)
         except FileNotFoundError:
-            print("Fashion data file not found. Scraping new data...")
+            print("FashionRecommender: Fashion data file not found. Scraping new data...") # Debug print
             return self.scrape_new_data()
 
     def scrape_new_data(self):
