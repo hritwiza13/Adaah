@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 # import tensorflow as tf # Removed as per current project scope
-import cv2 # Not used in current scope
+# import cv2 # Not used in current scope
 import numpy as np # Kept for potential future image processing, though not strictly needed for current color logic
 from PIL import Image
 import io
