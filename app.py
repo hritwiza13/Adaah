@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
-import tensorflow as tf
-import cv2
-import numpy as np
+# import tensorflow as tf # Removed as per current project scope
+import cv2 # Not used in current scope
+import numpy as np # Kept for potential future image processing, though not strictly needed for current color logic
 from PIL import Image
 import io
 import json
@@ -20,7 +20,7 @@ app.config.from_object(Config)
 app.config['JSON_SORT_KEYS'] = False
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max upload
 
-# Load pre-trained models (to be implemented)
+# Load pre-trained models (to be implemented) - Removed as per current project scope
 # style_model = tf.keras.models.load_model('models/style_model.h5')
 # virtual_tryon_model = tf.keras.models.load_model('models/virtual_tryon.h5')
 
@@ -175,5 +175,5 @@ def seasonal_wardrobe():
 if __name__ == '__main__':
     # Create upload folder if it doesn't exist
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
-    port = int(os.environ.get('PORT', 5000))
+    port = int(os.environ.get('PORT', 10000))
     app.run(host='0.0.0.0', port=port, debug=False) 
