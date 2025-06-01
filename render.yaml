@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: adaah
+    name: adaah-backend
     env: python
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app --workers 2 --threads 4 --timeout 180 --max-requests 1000 --max-requests-jitter 50 --log-level info
@@ -19,6 +19,20 @@ services:
         value: "models/virtual_tryon.h5"
       - key: PORT
         value: "10000"
-    healthCheckPath: /api/recommend-outfit
+    healthCheckPath: /api/health
+    autoDeploy: true
+    plan: free
+
+  - type: web
+    name: adaah-frontend
+    env: node
+    buildCommand: cd frontend && npm install && npm run build
+    startCommand: cd frontend && serve -s build
+    envVars:
+      - key: NODE_VERSION
+        value: 18.0.0
+      - key: REACT_APP_API_URL
+        value: https://adaah-backend.onrender.com
+    healthCheckPath: /
     autoDeploy: true
     plan: free 
